@@ -2,6 +2,33 @@
 
 End-to-end MLOps project: UCI Heart Disease dataset → 3 trained models → FastAPI backend → Flask web UI → Docker → Kubernetes → GitHub Actions CI/CD.
 
+## Dataset
+
+This project uses the **UCI Heart Disease (Cleveland) dataset**, publicly available at:
+🔗 https://archive.ics.uci.edu/ml/datasets/heart+Disease
+
+The dataset originates from the landmark study by Detrano et al., *"International application of a new probability algorithm for the diagnosis of coronary artery disease"* (cited 710+ times). It contains **303 patient records** described by **13 clinical features**:
+
+| Feature | Description |
+|---|---|
+| `age` | Age in years |
+| `sex` | Sex (1 = male, 0 = female) |
+| `cp` | Chest pain type (0–3) |
+| `trestbps` | Resting blood pressure (mm Hg) |
+| `chol` | Serum cholesterol (mg/dl) |
+| `fbs` | Fasting blood sugar > 120 mg/dl (1 = true) |
+| `restecg` | Resting ECG results (0–2) |
+| `thalach` | Maximum heart rate achieved |
+| `exang` | Exercise-induced angina (1 = yes) |
+| `oldpeak` | ST depression induced by exercise |
+| `slope` | Slope of peak exercise ST segment |
+| `ca` | Number of major vessels coloured by fluoroscopy (0–3) |
+| `thal` | Thalassemia (0 = normal, 1 = fixed defect, 2 = reversible defect) |
+
+**Target:** Binary — disease present (1) vs. absent (0).
+
+---
+
 ## Quick Start
 
 ```bash
@@ -22,8 +49,11 @@ uvicorn api.main:app --reload --port 8000
 
 # 5. Start Flask frontend (port 5000) — new terminal
 cd frontend && python app.py
+
 # Open http://localhost:5000
 ```
+
+---
 
 ## Docker
 
@@ -33,6 +63,8 @@ docker run -p 8000:8000 -p 5000:5000 heart-disease-app
 # UI  → http://localhost:5000
 # API → http://localhost:8000/docs
 ```
+
+---
 
 ## Kubernetes (Minikube)
 
@@ -45,12 +77,16 @@ kubectl get pods                          # wait for Running
 minikube service heart-disease-app        # opens UI in browser
 ```
 
+---
+
 ## GitHub Actions Secrets
 
 | Secret | Value |
 |---|---|
 | `DOCKERHUB_USERNAME` | Your Docker Hub username |
 | `DOCKERHUB_TOKEN` | Docker Hub access token |
+
+---
 
 ## Models
 
@@ -59,6 +95,8 @@ minikube service heart-disease-app        # opens UI in browser
 | Logistic Regression | 0.838 | 0.924 | Baseline, interpretable |
 | Random Forest | 0.800 | 0.893 | Ensemble |
 | XGBoost ★ | 0.843 | 0.906 | Champion — best F1 |
+
+---
 
 ## Project Structure
 
@@ -90,6 +128,8 @@ heart-disease-mlops/
 └── requirements.txt
 ```
 
+---
+
 ## API Endpoints
 
 | Method | URL | Description |
@@ -97,6 +137,8 @@ heart-disease-mlops/
 | GET | `/` | Health check |
 | GET | `/models` | List models + metrics |
 | POST | `/predict/csv` | Upload CSV → JSON predictions |
+
+---
 
 ## Web App Flow
 
