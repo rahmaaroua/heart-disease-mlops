@@ -6,6 +6,4 @@ venv/
 mlruns/
 mlflow.db
 .DS_Store
-data/raw/*.csv
-data/processed/
 models/*.joblib
