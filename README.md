@@ -2,6 +2,9 @@
 
 End-to-end MLOps project: UCI Heart Disease dataset → 3 trained models → FastAPI backend → Flask web UI → Docker → Kubernetes → GitHub Actions CI/CD.
 
+![Recording2026-04-01201336-ezgif com-optimize](https://github.com/user-attachments/assets/f9272ff5-1cc7-49db-afa6-aa962db5c018)
+
+
 ## Dataset
 
 This project uses the **UCI Heart Disease (Cleveland) dataset**, publicly available at:
