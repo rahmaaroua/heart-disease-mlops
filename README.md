@@ -29,6 +29,21 @@ The dataset originates from the landmark study by Detrano et al., *"Internationa
 
 ---
 
+## Project Report
+
+A full written report is included in this repository: [`mlops_heart_disease_report.pdf`](./mlops_heart_disease_report.pdf)
+
+The report (3 pages, LaTeX-typeset) documents the entire pipeline and covers:
+
+- **Problem Description** — dataset background, clinical features, preprocessing decisions, and why F1-score was chosen as the champion metric over accuracy
+- **System Architecture** — a detailed 7-layer pipeline diagram (data versioning → training → experiment tracking → REST serving → web frontend → containerisation → CI/CD automation), plus a breakdown table of every layer's technology and artefacts
+- **Tools Used and Justification** — reasoning behind each technology choice: DVC, MLflow, scikit-learn, XGBoost, FastAPI, Flask, Docker, Kubernetes, and GitHub Actions
+- **Challenges Faced** — real bugs encountered during development with root causes and fixes (missing `python-multipart`, Flask cookie overflow, relative path resolution, Minikube image pull, and scaler data leakage)
+
+> **Authors:** Ali Belhrak & Rahma Aroua
+
+---
+
 ## Quick Start
 
 ```bash
@@ -103,24 +118,25 @@ minikube service heart-disease-app        # opens UI in browser
 ```
 heart-disease-mlops/
 ├── data/
-│   ├── raw/heart_disease_uci.csv     ← DVC tracked
-│   └── processed/                    ← DVC outputs
+│   ├── raw/heart_disease_uci.csv          ← DVC tracked
+│   └── processed/                         ← DVC outputs
 ├── src/
-│   ├── preprocess.py                 ← DVC stage 1
-│   └── train.py                      ← DVC stage 2
+│   ├── preprocess.py                      ← DVC stage 1
+│   └── train.py                           ← DVC stage 2
 ├── api/
-│   └── main.py                       ← FastAPI (port 8000)
+│   └── main.py                            ← FastAPI (port 8000)
 ├── frontend/
-│   ├── app.py                        ← Flask (port 5000)
+│   ├── app.py                             ← Flask (port 5000)
 │   └── templates/
-│       ├── upload.html               ← Screen 1: upload + model select
-│       └── results.html              ← Screen 2: predictions table
-├── models/                           ← trained model artifacts
+│       ├── upload.html                    ← Screen 1: upload + model select
+│       └── results.html                   ← Screen 2: predictions table
+├── models/                                ← trained model artifacts
 ├── k8s/
 │   ├── deployment.yaml
 │   └── service.yaml
 ├── .github/workflows/
-│   └── pipeline.yaml                 ← CI/CD
+│   └── pipeline.yaml                      ← CI/CD
+├── mlops_heart_disease_report.pdf         ← Project report
 ├── dvc.yaml
 ├── params.yaml
 ├── Dockerfile
